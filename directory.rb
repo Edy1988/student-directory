@@ -1,4 +1,3 @@
-
 # start with a list of students
 students = [
   "Dr. Hannibal Lecter",
@@ -13,19 +12,11 @@ students = [
   "Joffrey Baratheon",
   "Norma Bates"
 ]
-
+# to print total students
 puts "The students of Villains Academy"
 puts "-------------"
-puts students[0]
-puts students[1]
-puts students[2]
-puts students[3]
-puts students[4]
-puts students[5]
-puts students[6]
-puts students[7]
-puts students[8]
-puts students[9]
-puts students[10]
+students.each do |student|
+  puts student
+end
 # add a total of students using print
 puts "Overall, we have #{students.count} great students."
