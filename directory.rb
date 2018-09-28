@@ -12,6 +12,32 @@ students = [
   {name: "Joffrey Baratheon", cohort: :november},
   {name: "Norman Bates", cohort: :november}
 ]
+# add interactive menu
+def interactive_menu
+  students = []
+  loop do
+    puts "1. Input the students"
+    puts "2. Show the students"
+    puts "9. Exit"
+
+    selection = gets.chomp
+
+    case selection
+    when "1"
+      students = input_students
+    when "2"
+      print_header
+      print(students)
+      print_footer(students)
+    when "9"
+      exit
+    else
+      puts "I dont't know wehat you mean, try again."
+    end
+  end
+end
+
+
 # to print total students
 
 def print_header
