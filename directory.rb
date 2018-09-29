@@ -1,3 +1,5 @@
+require 'csv'
+
 @students = []
 
 def interactive_menu
@@ -157,9 +159,9 @@ end
 
 def load_students_from(filename)
   @students.clear
-  
-  File.readlines(filename).each do |line|
-    name, cohort = line.chomp.split(',')
+
+  CSV.foreach(filename) do |row|
+    name, cohort = row
     add_student(name, cohort.to_sym)
   end
 
