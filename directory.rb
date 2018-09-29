@@ -30,7 +30,6 @@ def interactive_menu
   end
 end
 
-
 # to print total students
 
 def print_header
@@ -42,15 +41,34 @@ end
   # students.each_with_index {|value, index| puts "#{index+1}. #{value[:name]} (#{value[:cohort]} cohort)"}
 # end
 
-def print(students)
-  index = 0
-  until index == students.length
-    current_student = students[index]
-    puts "#{index+1}. #{current_student[:name]} (#{current_student[:cohort]} cohort)"
-    index += 1
-  end
-end
+# def print(students)
+  # index = 0
+  # until index == students.length
+  #   current_student = students[index]
+  #   puts "#{index+1}. #{current_student[:name]} (#{current_student[:cohort]} cohort)"
+  #   index += 1
+  # end
+# end
 
+def print(students)
+  all_cohorts = []
+  students.each { |student|
+    cohort = student[:cohort]
+    if !all_cohorts.include? cohort
+      all_cohorts.push(cohort)
+    end
+  }
+
+  all_cohorts.each { |cohort|
+    puts "#{cohort} cohort students:"
+
+    students.each { |student|
+      if cohort == student[:cohort]
+        puts student[:name]
+      end
+    }
+  }
+end
 
 def print_footer(students)
   puts "Overall, we have #{students.count} great students"
