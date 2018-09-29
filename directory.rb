@@ -13,7 +13,7 @@ def interactive_menu
 
     case selection
     when "1"
-      students = input_students
+      students.concat input_students
     when "2"
       print_header
       print(students)
@@ -25,7 +25,7 @@ def interactive_menu
     when "9"
       exit
     else
-      puts "I dont't know what you mean, try again."
+      puts "I dont't know what you meant, try again."
     end
   end
 end
@@ -139,8 +139,4 @@ def load_students
   file.close
 end
 
-students = input_students
-print_header
-print(students)
-print_footer(students)
-save_students
+interactive_menu
