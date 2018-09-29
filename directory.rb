@@ -3,11 +3,7 @@
 def interactive_menu
   students = []
   loop do
-    puts "1. Input the students"
-    puts "2. Show the students"
-    puts "3. Save the list to students.csv"
-    puts "4. Load the list from students.csv"
-    puts "9. Exit"
+    print_menu
 
     selection = gets.chomp
 
@@ -28,6 +24,14 @@ def interactive_menu
       puts "I dont't know what you meant, try again."
     end
   end
+end
+
+def print_menu
+  puts "1. Input the students"
+  puts "2. Show the students"
+  puts "3. Save the list to students.csv"
+  puts "4. Load the list from students.csv"
+  puts "9. Exit"
 end
 
 # to print total students
