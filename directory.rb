@@ -26,7 +26,7 @@ def process(selection)
   when "4"
     load_students
   when "9"
-    exit
+    end_program
   else
     print_invalid_menu_selection
   end
@@ -42,25 +42,15 @@ def print_invalid_menu_selection
   puts "I dont't know what you meant, try again."
 end
 
-# to print total students
-
 def print_header
   puts "The students of Villains Academy"
   puts "------------"
 end
 
-# def print(students)
-  # students.each_with_index {|value, index| puts "#{index+1}. #{value[:name]} (#{value[:cohort]} cohort)"}
-# end
-
-# def print(students)
-  # index = 0
-  # until index == students.length
-  #   current_student = students[index]
-  #   puts "#{index+1}. #{current_student[:name]} (#{current_student[:cohort]} cohort)"
-  #   index += 1
-  # end
-# end
+def end_program
+  puts "Exiting... Thanks for using our app!"
+  exit
+end
 
 def print_students
   all_cohorts = []
@@ -136,6 +126,12 @@ def save_students
     file.puts csv_line
   end
   file.close
+
+  if @students.count == 1
+    puts "Saved 1 student"
+  else
+    puts "Saved #{@students.count} students"
+  end
 end
 
 def load_students(filename = "students.csv")
@@ -145,6 +141,12 @@ def load_students(filename = "students.csv")
     add_student(name, cohort.to_sym)
   end
   file.close
+
+  if @students.count == 1
+    puts "Loaded 1 student from #{filename}"
+  else
+    puts "Loaded #{@students.count} students from #{filename}"
+  end
 end
 
 def add_student(name, cohort)
@@ -159,11 +161,6 @@ def try_load_students
 
   if File.exists?(filename)
     load_students(filename)
-    if @students.count == 1
-      puts "Loaded 1 student from #{filename}"
-    else
-      puts "Loaded #{@students.count} students from #{filename}"
-    end
   else
     puts "Sorry, #{filename} doesn't exist"
     exit
