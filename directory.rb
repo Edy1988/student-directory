@@ -38,7 +38,7 @@ def print_header
   puts "------------"
 end
 def print(students)
-  students.to_enum.with_index(1).each {|value, index| puts "#{index}. #{value[:name]}"}
+  students.each_with_index {|value, index| puts "#{index+1}. #{value[:name]}"}
 end
 def print_footer(students)
   puts "Overall, we have #{students.count} great students"
