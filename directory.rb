@@ -10,7 +10,7 @@ end
 def print_menu
   puts "1. Input the students"
   puts "2. Show the students"
-  puts "3. Save the list to students.csv"
+  puts "3. Save the list to a file"
   puts "4. Load the list from students.csv"
   puts "9. Exit"
 end
@@ -116,9 +116,21 @@ def input_students
   end
 end
 
+def input_filename
+  puts "Please enter the filename"
+  filename = STDIN.gets.chomp
+
+  if filename.empty?
+    input_filename
+  else
+    filename
+  end
+end
+
 def save_students
   # open the file for writing
-  file = File.open("students.csv", "w")
+  filename = input_filename
+  file = File.open(filename, "w")
   # iterate over the array of students
   @students.each do |student|
     student_data = [student[:name], student[:cohort]]
