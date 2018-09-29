@@ -116,9 +116,8 @@ def input_students
       break
     end
 
-    cohort = input_cohort
+    add_student(name, input_cohort)
 
-    @students << {name: name, cohort: cohort}
     if @students.count == 1
       puts "Now we have 1 student"
     else
@@ -142,10 +141,14 @@ end
 def load_students(filename = "students.csv")
   file = File.open(filename, "r")
   file.readlines.each do |line|
-  name, cohort = line.chomp.split(',')
-    @students << {name: name, cohort: cohort.to_sym}
+    name, cohort = line.chomp.split(',')
+    add_student(name, cohort.to_sym)
   end
   file.close
+end
+
+def add_student(name, cohort)
+  @students << {name: name, cohort: cohort}
 end
 
 def try_load_students
