@@ -11,7 +11,7 @@ def print_menu
   puts "1. Input the students"
   puts "2. Show the students"
   puts "3. Save the list to a file"
-  puts "4. Load the list from students.csv"
+  puts "4. Load the list from a file"
   puts "9. Exit"
 end
 
@@ -146,7 +146,17 @@ def save_students
   end
 end
 
-def load_students(filename = "students.csv")
+def load_students
+  filename = input_filename
+
+  if File.exists?(filename)
+    load_students_from(filename)
+  else
+    puts "Sorry, #{filename} doesn't exist"
+  end
+end
+
+def load_students_from(filename)
   file = File.open(filename, "r")
   file.readlines.each do |line|
     name, cohort = line.chomp.split(',')
@@ -174,7 +184,7 @@ def try_load_students
   end
 
   if File.exists?(filename)
-    load_students(filename)
+    load_students_from(filename)
   else
     puts "Sorry, #{filename} doesn't exist"
     exit
