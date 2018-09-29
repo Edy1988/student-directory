@@ -1,7 +1,6 @@
+@students = []
 
-# add interactive menu
 def interactive_menu
-  students = []
   loop do
     print_menu
 
@@ -9,11 +8,9 @@ def interactive_menu
 
     case selection
     when "1"
-      students.concat input_students
+      input_students
     when "2"
-      print_header
-      print(students)
-      print_footer(students)
+      show_students
     when "3"
       save_students
     when "4"
@@ -21,7 +18,7 @@ def interactive_menu
     when "9"
       exit
     else
-      puts "I dont't know what you meant, try again."
+      print_invalid_menu_selection
     end
   end
 end
@@ -32,6 +29,16 @@ def print_menu
   puts "3. Save the list to students.csv"
   puts "4. Load the list from students.csv"
   puts "9. Exit"
+end
+
+def show_students
+  print_header
+  print_students
+  print_footer
+end
+
+def print_invalid_menu_selection
+  puts "I dont't know what you meant, try again."
 end
 
 # to print total students
@@ -54,9 +61,9 @@ end
   # end
 # end
 
-def print(students)
+def print_students
   all_cohorts = []
-  students.each { |student|
+  @students.each { |student|
     cohort = student[:cohort]
     if !all_cohorts.include? cohort
       all_cohorts.push(cohort)
@@ -66,7 +73,7 @@ def print(students)
   all_cohorts.each { |cohort|
     puts "#{cohort} cohort students:"
 
-    students.each { |student|
+    @students.each { |student|
       if cohort == student[:cohort]
         puts student[:name]
       end
@@ -74,13 +81,13 @@ def print(students)
   }
 end
 
-def print_footer(students)
-  if students.empty?
+def print_footer
+  if @students.empty?
     puts "We have no students yet"
-  elsif students.count == 1
+  elsif @students.count == 1
     puts "Overall, we have 1 great student"
   else
-    puts "Overall, we have #{students.count} great students"
+    puts "Overall, we have #{@students.count} great students"
   end
 end
 
@@ -99,8 +106,6 @@ def input_cohort
 end
 
 def input_students
-  students = []
-
   while true do
     puts "Please enter the name of the student"
     puts "To finish, just hit return twice"
@@ -112,14 +117,13 @@ def input_students
 
     cohort = input_cohort
 
-    students << {name: name, cohort: cohort}
-    if students.count == 1
+    @students << {name: name, cohort: cohort}
+    if @students.count == 1
       puts "Now we have 1 student"
     else
-      puts "Now we have #{students.count} students"
+      puts "Now we have #{@students.count} students"
     end
   end
-  students
 end
 
 def save_students
