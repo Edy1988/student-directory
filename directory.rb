@@ -156,6 +156,8 @@ def load_students
 end
 
 def load_students_from(filename)
+  @students.clear
+  
   File.readlines(filename).each do |line|
     name, cohort = line.chomp.split(',')
     add_student(name, cohort.to_sym)
