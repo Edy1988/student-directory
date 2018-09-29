@@ -168,6 +168,8 @@ end
 def try_load_students
   filename = ARGV.first
   if filename.nil?
+    return if !File.exists?("students.csv")
+
     filename = "students.csv"
   end
 
