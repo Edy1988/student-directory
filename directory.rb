@@ -56,9 +56,22 @@ def print_footer(students)
   puts "Overall, we have #{students.count} great students"
 end
 
+def input_cohort
+  valid_cohorts = [:january, :february, :march, :april, :may, :june, :july, :august, :september, :october, :november, :december]
+  puts "Please enter the cohort (empty will default to november)"
+  cohort = gets.chomp.to_sym
+  if cohort.empty?
+    :november
+  elsif valid_cohorts.include? cohort
+    cohort
+  else
+    puts "Invalid cohort"
+    input_cohort
+  end
+end
+
 def input_students
   students = []
-
 
   while true do
     puts "Please enter the name of the student"
@@ -69,8 +82,7 @@ def input_students
       break
     end
 
-    puts "Please enter the cohort"
-    cohort = gets.chomp
+    cohort = input_cohort
 
     students << {name: name, cohort: cohort}
     puts "Now we have #{students.count} students"
