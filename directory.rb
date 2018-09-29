@@ -117,14 +117,14 @@ def input_students
 end
 
 def input_filename
-  puts "Please enter the filename"
+  puts "Please enter the filename (empty defaults to students.csv)"
   filename = STDIN.gets.chomp
 
   if filename.empty?
-    input_filename
-  else
-    filename
+    filename = "students.csv"
   end
+
+  filename
 end
 
 def save_students
