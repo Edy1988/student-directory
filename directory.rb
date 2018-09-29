@@ -37,9 +37,21 @@ def print_header
   puts "The students of Villains Academy"
   puts "------------"
 end
+
+# def print(students)
+  # students.each_with_index {|value, index| puts "#{index+1}. #{value[:name]} (#{value[:cohort]} cohort)"}
+# end
+
 def print(students)
-  students.each_with_index {|value, index| puts "#{index+1}. #{value[:name]} (#{value[:cohort]} cohort)"}
+  index = 0
+  until index == students.length
+    current_student = students[index]
+    puts "#{index+1}. #{current_student[:name]} (#{current_student[:cohort]} cohort)"
+    index += 1
+  end
 end
+
+
 def print_footer(students)
   puts "Overall, we have #{students.count} great students"
 end
